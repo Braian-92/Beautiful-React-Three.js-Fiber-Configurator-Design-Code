@@ -2,3 +2,6 @@
 
 # generador de codigo para importar glb en react
 [gltf.pmnd.rs](https://gltf.pmnd.rs/)
+
+# navegador dentro del VS
+VS Browser
