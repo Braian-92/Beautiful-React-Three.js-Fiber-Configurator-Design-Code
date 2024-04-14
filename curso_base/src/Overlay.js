@@ -1,4 +1,4 @@
-// import { Logo } from '@pmndrs/branding'
+import { Logo } from '@pmndrs/branding'
 // npm install @pmndrs/branding
 // import { AiOutlineHighlight, AiOutlineShopping } from 'react-icons/ai'
 // npm install react-icons/ai
@@ -12,7 +12,7 @@ function Intro() {
   return (
     <div className="container">
       <header>
-        {/* <Logo with="40" height="40" /> */}
+        <Logo with="40" height="40" />
         {/* <AiOutlineShopping size="3em"/> */}
       </header>
     </div>
