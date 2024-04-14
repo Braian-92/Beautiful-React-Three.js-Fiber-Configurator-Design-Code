@@ -1,13 +1,25 @@
 import { Logo } from '@pmndrs/branding'
 // npm install @pmndrs/branding
-import { AiOutlineHighlight, AiOutlineShopping } from 'react-icons/ai'
+import { AiOutlineHighlight, AiOutlineShopping, AiFillCamera, AiOutlineArrowLeft } from 'react-icons/ai'
 // npm install react-icons/ai (no funciono)
 // npm install react-icons --save (utilizar este metodo)
 // -- react-icons/ai (requirio validar con la cuenta de git)
-export default function Overlay() {
-  return <Customizer />
-}
 
+
+export default function Overlay() {
+  return (
+    <div className="container">
+      <header>
+        <Logo width="40" height="40" />
+        <div>
+          <AiOutlineShopping size="3em" />
+        </div>
+      </header>
+
+      <Customizer />
+    </div>
+  )
+}
 
 function Intro() {
   return (
@@ -42,7 +54,6 @@ function Intro() {
   )
 }
 
-
 function Customizer() {
   const colors = [
     '#ccc',
@@ -53,19 +64,36 @@ function Customizer() {
     '#353934',
     'Purple'
   ]
+  const decals = ['react', 'three2', 'pmndrs']
 
   return (
-    <section key='custom'>
-      <div className='customizer'>
-        <div className='color-options'>
-          {colors.map((color) => {
+    <section key="custom">
+      <div className="customizer">
+        <div className="color-options">
+          {colors.map((color) => (
             <div
               key={color}
-              className='circle'
-              style={{ background:color }}
-            ></div>
-          })}
+              className="circle"
+              style={{ background: color }}></div>
+          ))}
         </div>
+        <div className="decals">
+          <div className="decals--container">
+            {decals.map((decal) => (
+              <div key={decal} className="decal">
+                <img src={decal + '_thumb.png'} alt="brand" />
+              </div>
+            ))}
+          </div>
+        </div>
+        <button className="share" style={{ background: 'black' }}>
+          DOWNLOAD
+          <AiFillCamera size="1.3em" />
+        </button>
+        <button className="exit" style={{ background: 'black' }}>
+          GO BACK
+          <AiOutlineArrowLeft size="1.3em" />
+        </button>
       </div>
     </section>
   )
