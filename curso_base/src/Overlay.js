@@ -5,7 +5,7 @@ import { AiOutlineHighlight, AiOutlineShopping } from 'react-icons/ai'
 // npm install react-icons --save (utilizar este metodo)
 // -- react-icons/ai (requirio validar con la cuenta de git)
 export default function Overlay() {
-  return <Intro />
+  return <Customizer />
 }
 
 
@@ -42,3 +42,31 @@ function Intro() {
   )
 }
 
+
+function Customizer() {
+  const colors = [
+    '#ccc',
+    '#EFBD4E',
+    '#80C670',
+    '#726DE8',
+    '#EF674E',
+    '#353934',
+    'Purple'
+  ]
+
+  return (
+    <section key='custom'>
+      <div className='customizer'>
+        <div className='color-options'>
+          {colors.map((color) => {
+            <div
+              key={color}
+              className='circle'
+              style={{ background:color }}
+            ></div>
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
