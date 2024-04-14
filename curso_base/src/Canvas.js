@@ -1,15 +1,17 @@
+import { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { 
+import { easing } from 'maath'
+import * as THREE from 'three'
+
+import {
+  useGLTF,
   Environment,
   Center,
-  // OrbitControls,
-  useGLTF,
   AccumulativeShadows,
-  RandomizedLight 
+  RandomizedLight,
+  useTexture,
+  Decal
 } from '@react-three/drei'
-import { useRef } from 'react'
-import { easing } from 'maath'
-
 import { useSnapshot } from 'valtio'
 import { state } from './store'
 
@@ -34,6 +36,8 @@ export const App = ({ position = [0, 0, 2.5], fov = 25 }) => (
 function Shirt(props) {
   const snap = useSnapshot(state)
 
+  const texture = useTexture(`/${snap.selectedDecal}.png`)
+
   const { nodes, materials } = useGLTF('/shirt_baked_collapsed.glb')
 
   useFrame((state, delta) =>
@@ -47,7 +51,16 @@ function Shirt(props) {
       material={materials.lambert1}
       material-roughness={1}
       {...props}
-      dispose={null}></mesh>
+      dispose={null}>
+      <Decal
+        position={[0, 0.04, 0.15]}
+        rotation={[0, 0, 0]}
+        scale={0.15}
+        opacity={0.7}
+        map={texture}
+        // map-anisotropy={16}
+      />
+    </mesh>
   )
 }
 
@@ -92,6 +105,7 @@ function Backdrop() {
 
 function CameraRig({ children }) {
   const group = useRef()
+
   useFrame((state, delta) => {
     easing.damp3(state.camera.position, [0, 0, 2], 0.25, delta)
     easing.dampE(
